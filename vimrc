@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified September 25, 2015  <variablenix>
+" Last modified September 24, 2015  <variablenix>
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -24,8 +24,12 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set t_Co=256
 
+"" Color Scheme 
+colorscheme seoul256
+"colorscheme seoul256-light
 "colorscheme vividchalk
-colorscheme ir_black
+""colorscheme ir_black
+
 
 " Start IDE settings
 
@@ -151,13 +155,6 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
-
-" https://github.com/reedes/vim-pencil
-  augroup pencil
-    autocmd!
-    autocmd FileType markdown,mkd call pencil#init()
-    autocmd FileType text         call pencil#init()
-  augroup END
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
