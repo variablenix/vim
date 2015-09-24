@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified September 13, 2015  <admin@koderoot.net>
+" Last modified September 25, 2015  <variablenix>
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
