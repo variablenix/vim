@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified September 24, 2015  <variablenix>
+" Last modified September 24, 2015  <admin@koderoot.net>
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -23,6 +23,7 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set t_Co=256
+set ts=2 sw=2 et 
 
 "" Color Scheme 
 colorscheme seoul256
