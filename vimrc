@@ -18,18 +18,32 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
+
+"" set additional options
+set history=200		" keep 200 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set t_Co=256
 set ts=2 sw=2 et 
+set cursorline " show a visual line under the cursor's current line 
+set showmatch " show the matching part of the pair for [] {} and ()
+set title
+set undolevels=1000
+set encoding=utf-8
+set hidden
+set smartcase
+set pastetoggle=<F9> "" toggle proper paste
+set expandtab " expand tabs into spaces
+"set number " show line numbers
 
-"" Color Scheme 
+let python_highlight_all = 1 " enable all Python syntax highlighting features
+
+"" Colors
 colorscheme seoul256
 "colorscheme seoul256-light
 "colorscheme vividchalk
-""colorscheme ir_black
+"colorscheme ir_black
 
 
 " Start IDE settings
@@ -151,8 +165,6 @@ if has("autocmd")
     filetype plugin indent on
   " filetype	indent on
 
-    set pastetoggle=<F9>
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
@@ -188,7 +200,7 @@ endif
 
 
 "" Vim Plug
-"" http://www.swamphogg.com/2015/vim-setup/
+" http://www.swamphogg.com/2015/vim-setup/
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
