@@ -34,7 +34,7 @@ set encoding=utf-8
 set hidden
 set smartcase
 set pastetoggle=<F9> "" toggle proper paste
-set expandtab " expand tabs into spaces
+"set expandtab " expand tabs into spaces
 "set number " show line numbers
 
 let python_highlight_all = 1 " enable all Python syntax highlighting features
@@ -45,6 +45,16 @@ colorscheme seoul256
 "colorscheme vividchalk
 "colorscheme ir_black
 
+" -------------------- 
+" Spell Check
+" --------------------
+"   ]s — move to the next mispelled word
+"   [s — move to the previous mispelled word
+"   zg — add a word to the dictionary
+"   zug — undo the addition of a word to the dictionary
+"   z= — view spelling suggestions for a mispelled word
+"
+"set spell spelllang=en_us  " auto-enable spell check
 
 " Start IDE settings
 
@@ -211,7 +221,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
- Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+ Plug 'scrooloose/nerdtree', { 'on':  'NERDTree' }
  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using git URL
@@ -239,3 +249,9 @@ call plug#end()
 
 " Vim-Pencil
  Plug 'reedes/vim-pencil'
+
+" Python mode
+ Plug 'https://github.com/klen/python-mode.git'
+ 
+ " YouCompleteMe
+ Plug 'https://github.com/Valloric/YouCompleteMe.git'
