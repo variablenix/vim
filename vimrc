@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified September 29, 2015  <admin@koderoot.net>
+" Last modified October 7, 2015  <admin@koderoot.net>
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -25,7 +25,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set t_Co=256
-set ts=2 sw=2 et 
 set cursorline " show a visual line under the cursor's current line 
 set showmatch " show the matching part of the pair for [] {} and ()
 set title
@@ -36,12 +35,17 @@ set smartcase
 set pastetoggle=<F9> "" toggle proper paste
 "set expandtab " expand tabs into spaces
 "set number " show line numbers
+"set ts=2 sw=2 et 
 
 let python_highlight_all = 1 " enable all Python syntax highlighting features
 
 "" Colors
 colorscheme seoul256
+"colorscheme molokai
+"colorscheme euphrasia
+"colorscheme euphrasia3
 "colorscheme seoul256-light
+"colorscheme inkpot
 "colorscheme vividchalk
 "colorscheme ir_black
 
@@ -208,6 +212,12 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" When using sudoedit to edit /etc/rsnapshot.conf, the actual editing is done 
+" to a temporary file (e.g., /var/tmp/rsnapshotXXqMRN4N.conf), so the 
+" condition below has to match the modified name. 
+" 
+
+let g:vim_markdown_frontmatter=1
 
 "" Vim Plug
 " http://www.swamphogg.com/2015/vim-setup/
@@ -255,3 +265,6 @@ call plug#end()
  
  " YouCompleteMe
  Plug 'https://github.com/Valloric/YouCompleteMe.git'
+
+ " Vim Markdown
+ Plug 'https://github.com/plasticboy/vim-markdown.git'
