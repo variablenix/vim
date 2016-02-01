@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified October 7, 2015  <admin@koderoot.net>
+" Last modified February 1, 2016
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -40,8 +40,9 @@ set pastetoggle=<F9> "" toggle proper paste
 let python_highlight_all = 1 " enable all Python syntax highlighting features
 
 "" Colors
-colorscheme seoul256
-"colorscheme molokai
+"colorscheme oceandeep
+"colorscheme seoul256
+colorscheme molokai
 "colorscheme euphrasia
 "colorscheme euphrasia3
 "colorscheme seoul256-light
