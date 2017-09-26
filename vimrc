@@ -1,5 +1,5 @@
 " vimrc settings
-" Last modified August 21, 2016
+" Last modified Sept 25, 2017
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -33,11 +33,24 @@ set encoding=utf-8
 set hidden
 set smartcase
 set pastetoggle=<F9> "" toggle proper paste
-"set expandtab " expand tabs into spaces
+set tabstop=2 softtabstop=0 shiftwidth=2 smarttab
+set whichwrap+=<,>,[,]  "" automatically go to next line: https://stackoverflow.com/questions/2574027/automatically-go-to-next-line-in-vim
+set noexpandtab " expand spaces into tabs
 "set number " show line numbers
 "set ts=2 sw=2 et 
 
+" Set Python
 let python_highlight_all = 1 " enable all Python syntax highlighting features
+syntax on
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=2
+    \ set softtabstop=0
+    \ set shiftwidth=2
+    \ set textwidth=79
+    \ set noexpandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 " Colors
 colorscheme molokai
@@ -61,6 +74,8 @@ inoremap <C-U> <C-G>u<C-U>
 "if has('mouse')
 "  set mouse=cr
 "endif
+
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -145,7 +160,6 @@ call plug#begin('~/.vim/plugged')
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
-
 call plug#end()
 
 " Goyo plugin for markdown (MD) 
@@ -162,9 +176,29 @@ call plug#end()
 
 " Python mode
  Plug 'https://github.com/klen/python-mode.git'
- 
- " YouCompleteMe
+
+" Python indentation
+ Plug 'https://github.com/vim-scripts/indentpython.vim'
+
+" YouCompleteMe
  Plug 'https://github.com/Valloric/YouCompleteMe.git'
 
- " Vim Markdown
+" Vim Markdown
  Plug 'https://github.com/plasticboy/vim-markdown.git'
+
+" Syntastic
+ Plug 'https://github.com/vim-syntastic/syntastic'
+
+" let Vundle manage Vundle, required
+ Plug 'https://github.com/gmarik/Vundle.vim'
+
+" Vundle
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"EOF
