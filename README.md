@@ -1,3 +1,3 @@
 # vimrc
 
-just my vim config
+just my vim config and some nice colors
