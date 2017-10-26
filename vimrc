@@ -1,5 +1,5 @@
-" vimrc settings
-" Last modified Sept 25, 2017
+" vimrc config
+" Last modified Oct 26, 2017
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -34,8 +34,9 @@ set hidden
 set smartcase
 set pastetoggle=<F9> "" toggle proper paste
 set tabstop=2 softtabstop=0 shiftwidth=2 smarttab
+set expandtab
 set whichwrap+=<,>,[,]  "" automatically go to next line: https://stackoverflow.com/questions/2574027/automatically-go-to-next-line-in-vim
-set noexpandtab " expand spaces into tabs
+"set noexpandtab " expand spaces into tabs
 "set number " show line numbers
 "set ts=2 sw=2 et 
 
@@ -43,7 +44,7 @@ set noexpandtab " expand spaces into tabs
 let python_highlight_all = 1 " enable all Python syntax highlighting features
 syntax on
 
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead "*.py"
     \ set tabstop=2
     \ set softtabstop=0
     \ set shiftwidth=2
@@ -53,10 +54,10 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Colors
-colorscheme molokai
+"colorscheme molokai
 "colorscheme oceandeep
 "colorscheme seoul256
-"colorscheme euphrasia
+colorscheme euphrasia
 "colorscheme euphrasia3
 "colorscheme seoul256-light
 "colorscheme inkpot
