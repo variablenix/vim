@@ -1,5 +1,5 @@
-" vimrc config
-" Last modified Oct 26, 2017
+" vimrc settings
+" Last modified August 22, 2016
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -9,9 +9,32 @@ endif
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set encoding=utf-8
+set hidden
+set smartcase
+set title
+set undolevels=1000
+set noerrorbells
+set novisualbell
+set pastetoggle=<F9>
+set cursorline " show a visual line under the cursor's current line
+set showmatch " show the matching of pairs for [] {} and ()
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+"" automatically go to next line: https://stackoverflow.com/questions/2574027/automatically-go-to-next-line-in-vim
+set whichwrap+=<,>,[,]
+
+" Inactive
+" set wrap
+"set expandtab " expand tabs into spaces
+"set number " show line numbers
+"set ts=2 sw=2 et
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
+let python_highlight_all = 1 " enable all Python syntax highlighting features
+syntax on
 
 " Backup
 set backup
@@ -19,50 +42,25 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-" set additional options
 set history=200		" keep 200 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-set t_Co=256
-set cursorline " show a visual line under the cursor's current line 
-set showmatch " show the matching part of the pair for [] {} and ()
-set title
-set undolevels=1000
-set encoding=utf-8
-set hidden
-set smartcase
-set pastetoggle=<F9> "" toggle proper paste
-set tabstop=2 softtabstop=0 shiftwidth=2 smarttab
-set expandtab
-set whichwrap+=<,>,[,]  "" automatically go to next line: https://stackoverflow.com/questions/2574027/automatically-go-to-next-line-in-vim
-"set noexpandtab " expand spaces into tabs
-"set number " show line numbers
-"set ts=2 sw=2 et 
-
-" Set Python
-let python_highlight_all = 1 " enable all Python syntax highlighting features
-syntax on
-
-au BufNewFile,BufRead "*.py"
-    \ set tabstop=2
-    \ set softtabstop=0
-    \ set shiftwidth=2
-    \ set textwidth=79
-    \ set noexpandtab
-    \ set autoindent
-    \ set fileformat=unix
 
 " Colors
-"colorscheme molokai
-"colorscheme oceandeep
+colorscheme archlinux
+"colorscheme euphrasia
 "colorscheme seoul256
-colorscheme euphrasia
-"colorscheme euphrasia3
 "colorscheme seoul256-light
-"colorscheme inkpot
 "colorscheme vividchalk
 "colorscheme ir_black
+"colorscheme oceandeep
+"colorscheme molokai
+"colorscheme euphrasia3
+"colorscheme inkpot
+
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -73,10 +71,8 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 "if has('mouse')
-"  set mouse=cr
+"  set mouse=a
 "endif
-
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -92,8 +88,7 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
-  " filetype	indent on
+  filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -124,18 +119,11 @@ endif " has("autocmd")
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
 
-" When using sudoedit to edit /etc/rsnapshot.conf, the actual editing is done 
-" to a temporary file (e.g., /var/tmp/rsnapshotXXqMRN4N.conf), so the 
-" condition below has to match the modified name. 
-" 
-
-let g:vim_markdown_frontmatter=1
-
-" Vim Plug
+"" Vim Plug
 " http://www.swamphogg.com/2015/vim-setup/
 call plug#begin('~/.vim/plugged')
 
@@ -144,10 +132,10 @@ call plug#begin('~/.vim/plugged')
  Plug 'junegunn/vim-easy-align'
 
 " Group dependencies, vim-snippets depends on ultisnips
- Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' >=vim7.4
 
 " On-demand loading
- Plug 'scrooloose/nerdtree', { 'on':  'NERDTree' }
+ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using git URL
@@ -161,9 +149,11 @@ call plug#begin('~/.vim/plugged')
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
+
+" Unmanaged plugin (manually installed and updated)
 call plug#end()
 
-" Goyo plugin for markdown (MD) 
+" Goyo plugin for markdown (MD)
  Plug 'junegunn/goyo.vim'
 
 " Limelight best served w/ Goyo
@@ -177,29 +167,3 @@ call plug#end()
 
 " Python mode
  Plug 'https://github.com/klen/python-mode.git'
-
-" Python indentation
- Plug 'https://github.com/vim-scripts/indentpython.vim'
-
-" YouCompleteMe
- Plug 'https://github.com/Valloric/YouCompleteMe.git'
-
-" Vim Markdown
- Plug 'https://github.com/plasticboy/vim-markdown.git'
-
-" Syntastic
- Plug 'https://github.com/vim-syntastic/syntastic'
-
-" let Vundle manage Vundle, required
-  Plug 'https://github.com/gmarik/Vundle.vim'
-
-" Vundle
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-"EOF
